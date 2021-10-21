@@ -1,4 +1,9 @@
 <template>
   <div>Home</div>
 </template>
-<script></script>
+<script>
+export default {
+  name: "Home",
+  components: {},
+};
+</script>
