@@ -1,9 +1,46 @@
 <template>
-  <div>Home</div>
+  <main v-if="loading">
+    <div class="flex justify-center items-center">
+      <div
+        class="
+          animate-spin
+          rounded-full
+          h-32
+          w-32
+          border-t-2 border-b-2 border-blue-800
+        "
+      ></div>
+    </div>
+  </main>
+  <main v-else></main>
 </template>
 <script>
 export default {
   name: "Home",
   components: {},
+  data() {
+    return {
+      loading: true,
+      title: "Global",
+      dataDate: "",
+      stats: {},
+      countries: [],
+    };
+  },
+  methods: {
+    async fetchCovidData() {
+      const res = await fetch("https://api.covid19api.com/summary");
+      const data = await res.json();
+      return data;
+    },
+  },
+  async created() {
+    const data = await this.fetchCovidData();
+
+    this.dataDate = data.Date;
+    this.stats = data.Global;
+    this.countries = data.Countries;
+    this.loading = false;
+  },
 };
 </script>
