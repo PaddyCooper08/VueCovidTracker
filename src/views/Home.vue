@@ -12,12 +12,21 @@
       ></div>
     </div>
   </main>
-  <main v-else></main>
+  <main v-else>
+    <DataTitle :text="title" :dataDate="dataDate" />
+    <DataBoxes :stats="stats" />
+  </main>
 </template>
 <script>
+import DataTitle from "../components/DataTitle.vue";
+import DataBoxes from "../components/DataBoxes.vue";
+
 export default {
   name: "Home",
-  components: {},
+  components: {
+    DataTitle,
+    DataBoxes,
+  },
   data() {
     return {
       loading: true,
